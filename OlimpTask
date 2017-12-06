@@ -1,0 +1,46 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+	ifstream in("text.txt");
+	int r,c,v;
+	in>>r>>c>>v;
+
+	int mineArr[r][c];
+	for(int i=0;i<r;i++)
+	{
+		for(int j=0;j<c;j++)
+        {
+			in>>mineArr[i][j];
+		}
+	}
+	int mineSize=1,sumF=0;
+	int sum=0;
+
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            sum=0;
+            for(int l=0;l<mineSize;l++)
+            {
+                sum+=mineArr[i][j];
+            }
+            if(sum>sumF)
+            {
+                sumF=sum;
+            }
+        }
+        if(sumF<v)
+        {
+            mineSize++;
+        }
+    }
+
+    cout<<sumF;
+
+	in.close();
+	return 0;
+}
