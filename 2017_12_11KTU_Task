@@ -1,0 +1,46 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+const char OP[]="Data1.txt";
+const char CL[]="Res1.txt";
+int const ConstSize=1000;
+
+void Reading(int YearCat[], int &PartNum, int AgeAr[],int GenAr[]);
+
+int main()
+{
+    int YearCat[6];
+    int GenAr[ConstSize], AgeAr[ConstSize];
+    int PartNum;
+
+    Reading(YearCat,PartNum,AgeAr,GenAr);
+    CountMaleAndFemalePart( );
+
+}
+
+void Reading(int YearCat[], int &PartNum, int AgeAr[],int GenAr[])
+{
+    ifstream op(OP);
+
+    for(int i=0; i<6; i++)
+    {
+        op >> YearCat[i];
+    }
+
+    op >> PartNum;
+
+    for(int i=0; i<PartNum; i++)
+    {
+        op >> AgeAr[i] >> GenAr[i];
+    }
+
+}
+
+int CountMaleAndFemalePart(int GenNum[])
+{
+
+
+
+}
