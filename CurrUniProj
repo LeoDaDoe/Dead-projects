@@ -1,0 +1,91 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <iomanip>
+#include <algorithm>
+#include <string>
+#include <windows.h>
+#include <conio.h> 
+
+using namespace std;
+
+HANDLE hStdOut, hStdIn;
+
+void GotoXY(int x, int y)
+{
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+int main()
+{
+	int PosY = 0, PosX = 0, Temp;
+	hStdIn = GetStdHandle(STD_INPUT_HANDLE);
+
+	for (;;) {
+		if (GetAsyncKeyState(VK_DOWN)) {
+			for (;;)
+			{
+				PosY++;
+				GotoXY(PosX, PosY);
+				if (kbhit())
+				{
+					//FlushConsoleInputBuffer(hStdIn);
+					cout << 0;
+					break;
+				}
+				Sleep(100);
+			}
+		}
+		else if (GetAsyncKeyState(VK_UP)) {
+
+			for (;;)
+			{
+				PosY--;
+				GotoXY(PosX, PosY);
+				if (kbhit())
+				{
+					FlushConsoleInputBuffer(hStdIn);
+					break;
+				}
+				Sleep(100);
+
+			}
+		}
+		else if (GetAsyncKeyState(VK_RIGHT)) {
+			for (;;)
+			{
+				PosX++;
+				GotoXY(PosX, PosY);
+				if (kbhit())
+				{
+					FlushConsoleInputBuffer(hStdIn);
+					break;
+				}
+				Sleep(100);
+			}
+
+		}
+		else if (GetAsyncKeyState(VK_LEFT)) {
+
+			for (;;)
+			{
+				PosX--;
+				GotoXY(PosX, PosY);
+				if (kbhit())
+				{
+					FlushConsoleInputBuffer(hStdIn);
+					break;
+				}
+				Sleep(100);
+
+			}
+		}
+		Sleep(100);
+	}
+
+	system("pause");
+	return 0;
+}
